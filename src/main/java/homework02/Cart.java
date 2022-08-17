@@ -12,7 +12,7 @@ public class Cart {
     }
 
     public List<Product> getProducts() {
-        return Collections.unmodifiableList(products);
+        return new ArrayList<>(products);
     }
 
     public void add(Product product) {

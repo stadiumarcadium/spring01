@@ -30,14 +30,14 @@ public class ConsoleApp {
                             id = Long.valueOf(parts[1]);
                             if (productService.isProductIdExist(id)) {
                                 cartService.addToCartByProductId(id);
-                                System.out.println("В корзину добавлен товар: " + productService.findById(id).get());
+                                System.out.println("В корзину добавлен товар: " + productService.findById(id));
                             }
                             break;
                         case "/del":
                             id = Long.valueOf(parts[1]);
                             if (cartService.isProductIdExist(id)) {
                                 cartService.removeFromCartId(id);
-                                System.out.println("Из корзины удален товар: " + productService.findById(id).get());
+                                System.out.println("Из корзины удален товар: " + productService.findById(id));
                             }
                             break;
                         case "/print":

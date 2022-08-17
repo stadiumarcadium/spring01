@@ -1,11 +1,16 @@
 package homework02;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.test.annotation.ProfileValueSourceConfiguration;
 
 import javax.annotation.PostConstruct;
 
 @Component
+@Service
+@Scope("prototype")
 public class CartService {
     private ProductService productService;
     private Cart cart;
@@ -25,7 +30,7 @@ public class CartService {
     }
 
     public void addToCartByProductId(Long productId) {
-        Product product = productService.findById(productId).get();
+        Product product = productService.findById(productId);
         cart.add(product);
     }
 
@@ -57,6 +62,7 @@ public class CartService {
         }
         return sum;
     }
+
     public boolean isProductIdExist(Long id) {
         return cart.getProducts().stream().anyMatch(p -> p.getId().equals(id));
     }
