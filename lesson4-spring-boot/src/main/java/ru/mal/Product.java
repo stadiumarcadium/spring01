@@ -2,13 +2,14 @@ package ru.mal;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 
 public class Product {
     private Long id;
     @NotBlank(message = "can not be empty")
     private String title;
     @Digits(integer = 10, fraction = 2, message = "cost format $.¢¢")
-    private Double cost;
+    private BigDecimal cost;
 
     public Product(String title) {
         this.title = title;
@@ -30,11 +31,11 @@ public class Product {
         this.title = title;
     }
 
-    public Double getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(Double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 }
