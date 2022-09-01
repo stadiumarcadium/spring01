@@ -61,4 +61,10 @@ public class ProductDao {
             entityManager.close();
         }
     }
+
+    public List<Order> orderByProductId(Long id) {
+        Optional<Product> product = findById(id);
+        return product.get().getCustomers();
+    }
+
 }
