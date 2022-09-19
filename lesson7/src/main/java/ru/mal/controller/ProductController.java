@@ -27,11 +27,13 @@ public class ProductController {
             @RequestParam(required = false) BigDecimal maxCostFilter,
             @RequestParam(required = false) Optional<Integer> page,
             @RequestParam(required = false) Optional<Integer> size,
+            @RequestParam(required = false) Optional<String> sortField,
             Model model
     ) {
         Integer pageValue = page.orElse(1) - 1;
         Integer sizeValue = size.orElse(4);
-        model.addAttribute("products", service.findAllByFilter(titleFilter, minCostFilter, maxCostFilter, pageValue, sizeValue));
+        String sortFiledValue = sortField.filter(s -> !s.isBlank()).orElse("id");
+        model.addAttribute("products", service.findAllByFilter(titleFilter, minCostFilter, maxCostFilter, pageValue, sizeValue, sortFiledValue));
         return "product";
     }
 
